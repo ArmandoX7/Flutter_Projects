@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 // ignore: non_constant_identifier_names
 String dropdownValue = 'Mexico';
+bool _visible = false;
 
 class JeansPage extends StatelessWidget {
   @override
@@ -37,17 +38,20 @@ class JeansTalla extends StatelessWidget {
             children: <Widget>[
               Divider(),
               _SeleccionPais(),
-              Divider(),
-              _SeleccionTallaMX(),
-              Divider(),
-              _SeleccionTallaUSA(),
-              Divider(),
-              _SeleccionTallaEU(),
-              Divider(),
+              SizedBox(
+                height: 20.0,
+              ),
+              if (_visible == true) _SeleccionTallaMX(),
+              if (_visible == true) _SeleccionTallaUSA(),
+              if (_visible == true) _SeleccionTallaEU(),
               _SeleccionMedidaCintura(),
-              Divider(),
+              SizedBox(
+                height: 20.0,
+              ),
               _seleccionUnidad(),
-              Divider(),
+              SizedBox(
+                height: 20.0,
+              ),
               FlatButton(
                 child: Text(
                   'Calcula mi talla',
@@ -74,30 +78,6 @@ class JeansTalla extends StatelessWidget {
       children: [
         Text('Seleccione unidad'),
         _SeleccionUnidad(),
-        /*Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FlatButton(
-              child: Text(
-                'CM',
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {},
-              color: Colors.blue,
-            ),
-            SizedBox(
-              width: 30.0,
-            ),
-            FlatButton(
-              child: Text(
-                'IN',
-                style: TextStyle(color: Colors.white),
-              ),
-              onPressed: () {},
-              color: Colors.blue,
-            ),
-          ],
-        ),*/
       ],
     );
   }
@@ -127,6 +107,9 @@ class _SeleccionPaisState extends State<_SeleccionPais> {
           onChanged: (String newValue) {
             setState(() {
               dropdownValue = newValue;
+              if (dropdownValue == "Estados Unidos") {
+                _visible = !_visible;
+              }
             });
           },
           items: <String>['Mexico', 'Estados Unidos', 'Europa']
@@ -151,23 +134,30 @@ class _SeleccionTallaMXState extends State<_SeleccionTallaMX> {
   double _currentSliderValue = 3;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('¿Cual es tu talla? (MX)'),
-        Slider(
-          value: _currentSliderValue,
-          min: 3,
-          max: 15,
-          divisions: 6,
-          label: _currentSliderValue.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _currentSliderValue = value;
-            });
-          },
-        ),
-      ],
-    );
+    return Visibility(
+        visible: _visible == true,
+        child: Container(
+          child: Column(
+            children: [
+              Text('¿Cual es tu talla? (MX)'),
+              Slider(
+                value: _currentSliderValue,
+                min: 3,
+                max: 15,
+                divisions: 6,
+                label: _currentSliderValue.round().toString(),
+                onChanged: (double value) {
+                  setState(() {
+                    _currentSliderValue = value;
+                    if (value.toString() == "Mexico") {
+                      _visible = !_visible;
+                    }
+                  });
+                },
+              ),
+            ],
+          ),
+        ));
   }
 }
 
@@ -180,23 +170,25 @@ class _SeleccionTallaUSAState extends State<_SeleccionTallaUSA> {
   double _currentSliderValue = 0;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('¿Cual es tu talla? (USA)'),
-        Slider(
-          value: _currentSliderValue,
-          min: 0,
-          max: 12,
-          divisions: 6,
-          label: _currentSliderValue.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _currentSliderValue = value;
-            });
-          },
-        ),
-      ],
-    );
+    return Visibility(
+        visible: _visible,
+        child: Column(
+          children: [
+            Text('¿Cual es tu talla? (USA)'),
+            Slider(
+              value: _currentSliderValue,
+              min: 0,
+              max: 12,
+              divisions: 6,
+              label: _currentSliderValue.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  _currentSliderValue = value;
+                });
+              },
+            ),
+          ],
+        ));
   }
 }
 
@@ -209,23 +201,25 @@ class _SeleccionTallaEUState extends State<_SeleccionTallaEU> {
   double _currentSliderValue = 32;
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('¿Cual es tu talla? (EU)'),
-        Slider(
-          value: _currentSliderValue,
-          min: 32,
-          max: 44,
-          divisions: 6,
-          label: _currentSliderValue.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _currentSliderValue = value;
-            });
-          },
-        ),
-      ],
-    );
+    return Visibility(
+        visible: _visible,
+        child: Column(
+          children: [
+            Text('¿Cual es tu talla? (EU)'),
+            Slider(
+              value: _currentSliderValue,
+              min: 32,
+              max: 44,
+              divisions: 6,
+              label: _currentSliderValue.round().toString(),
+              onChanged: (double value) {
+                setState(() {
+                  _currentSliderValue = value;
+                });
+              },
+            ),
+          ],
+        ));
   }
 }
 
