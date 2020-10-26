@@ -214,7 +214,7 @@ class _BodyPageState extends State<BodyPage> {
       } else if (_currentSliderValueIN >= 25.5 &&
           _currentSliderValueIN <= 27.0) {
         _talla = "L";
-      } else if (_currentSliderValueIN >= 27.1 &&
+      } else if (_currentSliderValueIN > 27.0 &&
           _currentSliderValueIN <= 28.6) {
         _talla = "XL";
       } else if (_currentSliderValueIN >= 28.7 &&
