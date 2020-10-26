@@ -1,5 +1,9 @@
-import 'package:componentes/src/pages/jeans_page.dart';
 import 'package:flutter/material.dart';
+
+import 'package:componentes/src/pages/jeans_page.dart';
+import 'package:componentes/src/pages/cinturilla_page.dart';
+import 'package:componentes/src/pages/short_page.dart';
+import 'package:componentes/src/pages/body_page.dart';
 
 class CalculaTallaPage extends StatelessWidget {
   @override
@@ -32,67 +36,19 @@ class CalculaTallaPage extends StatelessWidget {
           body: TabBarView(
             children: [
               ListView(
-                children: <Widget>[JeansPage(), JeansTalla()],
+                children: <Widget>[JeansPage()],
               ),
               ListView(
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 100.0),
-                children: <Widget>[_Cinturilla()],
+                children: <Widget>[CinturillaPage()],
               ),
               ListView(
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 100.0),
-                children: <Widget>[_Short()],
+                children: <Widget>[ShortPage()],
               ),
               ListView(
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 90.0),
-                children: <Widget>[_Body()],
+                children: <Widget>[BodyPage()],
               )
             ],
           ),
-        ),
-      ),
-    );
-  }
-
-  // ignore: non_constant_identifier_names
-  Widget _Cinturilla() {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.all(10.0),
-      child: Center(
-        child: Image.asset(
-          'assets/images/cinturilla.png',
-          height: 200.0,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  // ignore: non_constant_identifier_names
-  Widget _Short() {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.all(10.0),
-      child: Center(
-        child: Image.asset(
-          'assets/images/short.png',
-          height: 200.0,
-          fit: BoxFit.cover,
-        ),
-      ),
-    );
-  }
-
-  // ignore: non_constant_identifier_names
-  Widget _Body() {
-    return Card(
-      clipBehavior: Clip.antiAlias,
-      margin: EdgeInsets.all(10.0),
-      child: Center(
-        child: Image.asset(
-          'assets/images/body.png',
-          height: 200.0,
-          fit: BoxFit.cover,
         ),
       ),
     );
