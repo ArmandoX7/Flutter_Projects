@@ -65,6 +65,7 @@ class MovieHorizontal extends StatelessWidget {
     );
   }
 
+  // ignore: unused_element
   List<Widget> _tarjetas(BuildContext context) {
     return peliculas.map((pelicula) {
       return Container(
